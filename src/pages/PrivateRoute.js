@@ -4,8 +4,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const PrivateRoute = ({children, ...rest}) => {
   console.log("rest", rest)
-  const {isAithenticeated, user}=useAuth0
-  const isUser = isAithenticeated && user
+  const {isAuthenticated, user}=useAuth0()
+  console.log(isAuthenticated, user)
+  const isUser = isAuthenticated && user
 
   return <Route {...rest} render = {()=>{
     return isUser?children : <Redirect to = "/login"></Redirect>
